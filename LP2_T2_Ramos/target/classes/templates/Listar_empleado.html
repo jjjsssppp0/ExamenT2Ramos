@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Empleados</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="mb-4">Lista de Empleados</h1>
+        
+        <table class="table table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>DNI</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Fecha de Nacimiento</th>
+                    <th>Dirección</th>
+                    <th>Correo</th>
+                    <th>Área</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="empleado : ${lst_empleado}">
+                    <td th:text="${empleado.dniEmpleado}">DNI</td>
+                    <td th:text="${empleado.nombreEmpleado}">Nombre</td>
+                    <td th:text="${empleado.apellidoEmpleado}">Apellido</td>
+                    <td th:text="${empleado.fechaNacimiento}">Fecha de Nacimiento</td>
+                    <td th:text="${empleado.direccion}">Dirección</td>
+                    <td th:text="${empleado.correo}">Correo</td>
+                    <td th:text="${empleado.area.nombreArea}">Área</td>
+                    <td>
+                        <a th:href="@{/detalle_empleado/{id}(id=${empleado.dniEmpleado})}" class="btn btn-info btn-sm">Ver</a>
+                        <a th:href="@{/empleado/editar_empleado/{id}(id=${empleado.dniEmpleado})}" class="btn btn-warning btn-sm">Actualizar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <a th:href="@{/registrar_empleado}" class="btn btn-primary">Agregar Nuevo Empleado</a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
